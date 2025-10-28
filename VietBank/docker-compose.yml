@@ -1,0 +1,33 @@
+services:
+  mysql:
+    image: mysql:8.0.36-debian
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: vietbank_db
+
+    networks:
+      - vietbank-network
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  vietbank:
+    image: danghieu2003/vietbank:0.5.0   #Ứng dụng Spring Boot đã push sẵn lên Docker Hub
+    container_name: vietbank
+    depends_on:
+      - mysql
+    environment:
+      DBMS_CONNECTION: jdbc:mysql://mysql:3306/vietbank_db
+      DBMS_USERNAME: root
+      DBMS_PASSWORD: root
+    ports:
+      - "8080:8080"
+    networks:
+      - vietbank-network
+
+volumes:
+  mysql_data:
+
+networks:
+  vietbank-network:
+    driver: bridge
