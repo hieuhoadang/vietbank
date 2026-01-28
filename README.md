@@ -31,6 +31,7 @@ Java, Spring Boot, Spring Security,Spring Data JPA, JWT, RESTful API, MySQL, Hib
 ## Cách chạy dự án bằng Docker:
 ## 1. Clone repository
 git clone https://github.com/hieuhoadang/vietbank.git
+
 cd vietbank
 ## 2. Chạy ứng dụng bằng Docker Compose
 docker-compose up -d --build
